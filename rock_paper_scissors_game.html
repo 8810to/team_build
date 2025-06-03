@@ -1,4 +1,4 @@
-<!--made by ChatGPT-->
+<!-- ChatGPTによって作成された じゃんけんゲーム -->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -6,58 +6,82 @@
     <meta charset="UTF-8">
     <title>じゃんけんゲーム</title>
     <style>
+        /* 全体のスタイル設定 */
         body {
             font-family: sans-serif;
+            /* フォントを設定 */
             text-align: center;
+            /* 中央揃え */
             margin-top: 50px;
+            /* 上部にスペース */
             transition: background-color 0.5s ease;
+            /* 背景色の変化をアニメーション */
         }
 
+        /* ボタンのスタイル設定 */
         button {
             font-size: 18px;
+            /* 文字サイズ */
             margin: 10px;
+            /* ボタン間の余白 */
             padding: 10px 20px;
+            /* 内側の余白 */
         }
 
+        /* 結果表示のスタイル */
         #result {
             font-size: 24px;
+            /* 結果の文字サイズ */
             margin-top: 30px;
+            /* 上に余白 */
         }
     </style>
 </head>
 
 <body>
 
+    <!-- タイトルと説明文 -->
     <h1>じゃんけんゲーム</h1>
     <p>手を選んでコンピュータと勝負！</p>
 
+    <!-- じゃんけんのボタン -->
     <button onclick="play('グー')">✊ グー</button>
     <button onclick="play('チョキ')">✌ チョキ</button>
     <button onclick="play('パー')">🖐 パー</button>
 
+    <!-- 勝敗結果を表示するエリア -->
     <div id="result"></div>
 
+    <!-- JavaScriptでゲームのロジックを記述 -->
     <script>
         function play(playerChoice) {
+            // コンピュータの手（ランダムで選ばれる）
             const hands = ['グー', 'チョキ', 'パー'];
             const cpuChoice = hands[Math.floor(Math.random() * 3)];
 
-            let result = '';
+            let result = ''; // 結果を格納する変数
+
+            // あいこの場合
             if (playerChoice === cpuChoice) {
                 result = 'あいこ！';
-                document.body.style.backgroundColor = 'white';
-            } else if (
+                document.body.style.backgroundColor = 'white'; // 背景色を白に
+            }
+            // 勝ちの条件
+            else if (
                 (playerChoice === 'グー' && cpuChoice === 'チョキ') ||
                 (playerChoice === 'チョキ' && cpuChoice === 'パー') ||
                 (playerChoice === 'パー' && cpuChoice === 'グー')
             ) {
                 result = 'あなたの勝ち！';
-                document.body.style.backgroundColor = 'gold';
-            } else {
+                document.body.style.backgroundColor = 'gold'; // 勝ち：背景色を金色に
+            }
+            // 負けの場合
+            else {
                 result = 'あなたの負け…';
-                document.body.style.backgroundColor = 'blue';
+                document.body.style.backgroundColor = 'blue'; // 負け：背景色を青に
             }
 
+            // 結果を画面に表示
             document.getElementById('result').innerHTML = `
                 あなた: ${playerChoice} <br>
                 コンピュータ: ${cpuChoice} <br><br>
