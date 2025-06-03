@@ -10,6 +10,7 @@
             font-family: sans-serif;
             text-align: center;
             margin-top: 50px;
+            transition: background-color 0.5s ease;
         }
 
         button {
@@ -44,21 +45,24 @@
             let result = '';
             if (playerChoice === cpuChoice) {
                 result = 'あいこ！';
+                document.body.style.backgroundColor = 'white';
             } else if (
                 (playerChoice === 'グー' && cpuChoice === 'チョキ') ||
                 (playerChoice === 'チョキ' && cpuChoice === 'パー') ||
                 (playerChoice === 'パー' && cpuChoice === 'グー')
             ) {
                 result = 'あなたの勝ち！';
+                document.body.style.backgroundColor = 'gold';
             } else {
                 result = 'あなたの負け…';
+                document.body.style.backgroundColor = 'blue';
             }
 
             document.getElementById('result').innerHTML = `
-        あなた: ${playerChoice} <br>
-        コンピュータ: ${cpuChoice} <br><br>
-        <strong>${result}</strong>
-      `;
+                あなた: ${playerChoice} <br>
+                コンピュータ: ${cpuChoice} <br><br>
+                <strong>${result}</strong>
+            `;
         }
     </script>
 
