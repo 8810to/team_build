@@ -1,4 +1,3 @@
-<!--made by ChatGPT-->
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -19,7 +18,8 @@
             padding: 10px 20px;
         }
 
-        #result {
+        #result,
+        #score {
             font-size: 24px;
             margin-top: 30px;
         }
@@ -34,10 +34,14 @@
     <button onclick="play('グー')">✊ グー</button>
     <button onclick="play('チョキ')">✌ チョキ</button>
     <button onclick="play('パー')">🖐 パー</button>
+    <button onclick="resetGame()">🔄 リセット</button>
 
     <div id="result"></div>
+    <div id="score">スコア: 0</div>
 
     <script>
+        let score = 0;
+
         function play(playerChoice) {
             const hands = ['グー', 'チョキ', 'パー'];
             const cpuChoice = hands[Math.floor(Math.random() * 3)];
@@ -53,9 +57,11 @@
             ) {
                 result = 'あなたの勝ち！';
                 document.body.style.backgroundColor = 'gold';
+                score++;
             } else {
                 result = 'あなたの負け…';
-                document.body.style.backgroundColor = 'blue';
+                document.body.style.backgroundColor = 'lightblue';
+                score = Math.max(0, score - 1);
             }
 
             document.getElementById('result').innerHTML = `
@@ -63,6 +69,14 @@
                 コンピュータ: ${cpuChoice} <br><br>
                 <strong>${result}</strong>
             `;
+            document.getElementById('score').textContent = `スコア: ${score}`;
+        }
+
+        function resetGame() {
+            score = 0;
+            document.getElementById('score').textContent = 'スコア: 0';
+            document.getElementById('result').innerHTML = '';
+            document.body.style.backgroundColor = 'white';
         }
     </script>
 
