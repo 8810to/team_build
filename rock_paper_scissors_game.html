@@ -1,0 +1,67 @@
+<!--made by ChatGPT-->
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <title>じゃんけんゲーム</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        button {
+            font-size: 18px;
+            margin: 10px;
+            padding: 10px 20px;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-top: 30px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>じゃんけんゲーム</h1>
+    <p>手を選んでコンピュータと勝負！</p>
+
+    <button onclick="play('グー')">✊ グー</button>
+    <button onclick="play('チョキ')">✌ チョキ</button>
+    <button onclick="play('パー')">🖐 パー</button>
+
+    <div id="result"></div>
+
+    <script>
+        function play(playerChoice) {
+            const hands = ['グー', 'チョキ', 'パー'];
+            const cpuChoice = hands[Math.floor(Math.random() * 3)];
+
+            let result = '';
+            if (playerChoice === cpuChoice) {
+                result = 'あいこ！';
+            } else if (
+                (playerChoice === 'グー' && cpuChoice === 'チョキ') ||
+                (playerChoice === 'チョキ' && cpuChoice === 'パー') ||
+                (playerChoice === 'パー' && cpuChoice === 'グー')
+            ) {
+                result = 'あなたの勝ち！';
+            } else {
+                result = 'あなたの負け…';
+            }
+
+            document.getElementById('result').innerHTML = `
+        あなた: ${playerChoice} <br>
+        コンピュータ: ${cpuChoice} <br><br>
+        <strong>${result}</strong>
+      `;
+        }
+    </script>
+
+</body>
+
+</html>
